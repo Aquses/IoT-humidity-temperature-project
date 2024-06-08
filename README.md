@@ -29,7 +29,7 @@ ESP8266 | A microcontroller used for data collection, data transfer, and data an
 DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature 
 5x Jumper wires | Wires for connecting the different components
 Breadboard 800 points | A board used to easy connect the sensors without soldering 
-Micro USB cable | Connection between ESP8266 and a computer
+Micro USB cable | Connection between Raspberry Pi Pico and a computer
 
 I bought the Linnaeus Development kit for 399 SEK, so it had all of these components included.
 
@@ -48,7 +48,78 @@ The setup of the device and the wiring is shown down below
 
 # The code
 ```
+import network
+import time
+import machine
+import urequests
+import dht
 
+SSID = '' # WiFi internets username
+PASSWORD = '' # internets password
+
+# ThingSpeak settings
+WRITE_API_KEY = ''  # Place API key from ThingSpeak
+THINGSPEAK_URL = 'https://api.thingspeak.com/update'
+
+# Function to connect to Wi-Fi
+def connect_to_wifi(ssid, password):
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    wlan.connect(ssid, password)
+    
+    max_wait = 10
+    while max_wait > 0:
+        if wlan.status() == network.STAT_GOT_IP:
+            print('Connected to Wi-Fi')
+            print('IP Address:', wlan.ifconfig()[0])
+            return True
+        max_wait -= 1
+        print('Waiting for connection...')
+        time.sleep(1)
+    
+    print('Failed to connect to Wi-Fi')
+    return False
+
+# Function to send data to ThingSpeak
+def send_to_thingspeak(temperature, humidity):
+    try:
+        url = f"{THINGSPEAK_URL}?api_key={WRITE_API_KEY}&field1={temperature}&field2={humidity}"
+        response = urequests.get(url)
+        response.close()
+        print("Data sent to ThingSpeak")
+    except Exception as e:
+        print("Failed to send data to ThingSpeak:", e)
+
+# Main function
+def main():
+    # Connect to Wi-Fi
+    if not connect_to_wifi(SSID, PASSWORD):
+        return
+
+    # Define the pin where the DHT11 data pin is connected (e.g., GPIO15)
+    dht11_pin = machine.Pin(27)  # Change the pin number if needed
+
+    # Initialize the DHT11 sensor
+    dht11_sensor = dht.DHT11(dht11_pin)
+
+    while True:
+        try:
+            # Measure temperature and humidity
+            dht11_sensor.measure()
+            temperature = dht11_sensor.temperature()
+            humidity = dht11_sensor.humidity()
+            print(f"Temperature: {temperature} C   Humidity: {humidity}%")
+            
+            # Send data to ThingSpeak
+            send_to_thingspeak(temperature, humidity)
+            
+            # Add a delay before taking the next measurement
+            time.sleep(15)  # ThingSpeak allows updates every 15 seconds for free accounts
+        except OSError as e:
+            print("Failed to read sensor:", e)
+
+# Run the main function
+main()
 ```
 
 # Transmitting the data / connectivity
