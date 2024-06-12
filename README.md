@@ -50,6 +50,8 @@ After the configuration a ".micropico" config was created, therefore it means th
 
 Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.
 
+In this project, I used the website https://ThingSpeak.com. By using ThingSpeak, you can share your sensor data on their platform and visualize it on a graph along with timestamps. This enables you to conveniently access your sensor readings from any location worldwide.
+
 # Putting Everything together
 The setup of the device and the wiring is shown down below
 
