@@ -42,7 +42,7 @@ The first step was to decide which IDE to use. I chose Visual Studio Code. After
 
 After that we need to configure the project for the Pico. That is why we use extension to do so.
 
-![Alt text](img/ide_pic1.png)
+![Alt text](images/ide_pic1.png)
 
 # Putting Everything together
 The setup of the device and the wiring is shown down below
