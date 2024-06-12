@@ -44,6 +44,12 @@ After that we need to configure the project for the Pico. That is why we use ext
 
 ![Alt text](images/ide_pic1.png)
 
+After the configuration a ".micropico" config was created, therefore it means that the configuration was initialized correctly. From this point, we can try to connect the Raspberry Pi Pico to a computer and see, if our IDE detects it.
+
+![Alt text](images/ide_pic2.png)
+
+Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.
+
 # Putting Everything together
 The setup of the device and the wiring is shown down below
 
