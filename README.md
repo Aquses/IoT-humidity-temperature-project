@@ -53,7 +53,7 @@ Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will n
 In this project, I used the website https://ThingSpeak.com. By using ThingSpeak, you can share your sensor data on their platform and visualize it on a graph along with timestamps. This enables you to conveniently access your sensor readings from any location worldwide.
 
 Next step is creating a new channel on Thingspeak and getting and API key for uploading the data. 
-![Alt text](images/thingspeak_pic1.png)
+![Alt text](images/thingspeak_img1.png)
 
 # Putting Everything together
 The setup of the device and the wiring is shown down below
