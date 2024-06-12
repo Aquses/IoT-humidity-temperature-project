@@ -55,6 +55,17 @@ In this project, I used the website https://ThingSpeak.com. By using ThingSpeak,
 Next step is creating a new channel on Thingspeak and getting and API key for uploading the data. 
 ![Alt text](images/thingspeak_img1.png)
 
+You are now ready to run your code on the development board. To upload the code, follow these steps:
+
+1. Open the Visual Studio Code with given code.
+2. Replace the placeholders in the code with your actual SSID (WiFi name), WiFi password, and API key.
+3. Make sure you have assembled the circuit according to the circuit diagram.
+4. Connect the development board to your computer.
+5. Select the appropriate board pin in the Raspberry Pi Pico.
+6. Click on the 'Run' button to compile and run the code.
+7. See and wait for the Raspberry Pi Pico to connect to the internet and send data to ThingSpeak.
+
+
 # Putting Everything together
 The setup of the device and the wiring is shown down below
 
