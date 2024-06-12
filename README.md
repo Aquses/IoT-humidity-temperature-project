@@ -70,6 +70,7 @@ You are now ready to run your code on the development board. To upload the code,
 The setup of the device and the wiring is shown down below
 
 # Platform
+For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
 
 # The code
 ```
