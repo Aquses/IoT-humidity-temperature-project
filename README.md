@@ -158,6 +158,8 @@ For wireless communication, I used WiFi because my microcontroller is positioned
 To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protocol enables the sensor data to be sent to ThingSpeak. HTTP facilitates communication between a client and server using a request-response model. I specifically utilized the POST request method, which allows data to be sent to the server for creating or updating resources, such as publishing sensor readings.
 
 # Presenting the data
+![Alt text](images/thingspeak_temp.png)
+![Alt text](images/thingspeak_humid.png)
 
 # Finalizing the design
 
