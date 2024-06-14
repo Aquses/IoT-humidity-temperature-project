@@ -150,6 +150,21 @@ def main():
 main()
 ```
 
+Output
+```
+Temperature: 22 C, Humidity: 38%
+HTTP/1.1 200 b'OK'
+Date: Fri, 14 Jun 2024 20:07:24 GMT
+Content-Type: text/plain; charset=utf-8
+Content-Length: 2
+Connection: close
+Status: 200 b'OK'
+Cache-Control: max-age=0, private, must-revalidate
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 1800
+X-Request-Id: 6083e79d-2c9a-45aa-bcbd-2eb701e8d707
+```
+
 # Transmitting the data / connectivity
 I opted to send data at hourly intervals to monitor the humidity levels in my room. This frequency is ideal for determining if the environment is too dry.
 
