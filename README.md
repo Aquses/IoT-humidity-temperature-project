@@ -150,7 +150,7 @@ def main():
 main()
 ```
 
-Output
+<mark>Output</mark>
 ```
 Temperature: 22 C, Humidity: 38%
 HTTP/1.1 200 b'OK'
