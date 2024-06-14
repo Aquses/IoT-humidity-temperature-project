@@ -161,5 +161,5 @@ To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protoc
 
 # Finalizing the design
 
-![Alt text](images/setup1.png)
-![Alt text](images/setup2.png)
+![Alt text](images/setup1.jpg)
+![Alt text](images/setup2.jpg)
