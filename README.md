@@ -158,6 +158,7 @@ For wireless communication, I used WiFi because my microcontroller is positioned
 To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protocol enables the sensor data to be sent to ThingSpeak. HTTP facilitates communication between a client and server using a request-response model. I specifically utilized the POST request method, which allows data to be sent to the server for creating or updating resources, such as publishing sensor readings.
 
 # Presenting the data
+The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 15 minutes. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
 ![Alt text](images/thingspeak_temp.png)
 ![Alt text](images/thingspeak_humid.png)
 
