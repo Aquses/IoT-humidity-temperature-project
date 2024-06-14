@@ -163,3 +163,7 @@ To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protoc
 
 ![Alt text](images/setup1.jpg)
 ![Alt text](images/setup2.jpg)
+
+# Final thoughts
+
+The project was successful, I managed to connect everything and send date to ThingSpeak. The programming with python was not hard, because I had written on it before. Connecting everything was also easy, because I also had some of the experience with Raspberry Pi Pico. And of course now I know that my room has enough humidity.
