@@ -154,6 +154,7 @@ def main():
 
 main()  # Run the main function
 ```
+The code starts with importing several libraries necessary for its functionality. The network library is used to manage Wi-Fi connections, time is utilized for sleep intervals and delays, machine handles hardware operations such as pin assignments, urequests facilitates sending HTTP requests to web services, and dht is used to interface with the DHT11 temperature and humidity sensor. These imports provide the essential tools needed to connect to Wi-Fi, read sensor data, and send this data to the ThingSpeak cloud service.
 
 1. **connect_to_wifi(ssid, password):** This method connects the device to a Wi-Fi network using the provided SSID and password. It creates and activates a WLAN station interface, then tries to connect to the Wi-Fi network and waits for up to 50 seconds (10 intervals of 5 seconds each). If it successfully connects and gets an IP address, it prints the IP address and returns True. If it fails to connect within the maximum wait time, it prints a failure message and returns False.
 
@@ -161,7 +162,6 @@ main()  # Run the main function
 
 3. **main():** This is the main function that orchestrates the entire process. It first attempts to connect to the Wi-Fi using the connect_to_wifi method. If the Wi-Fi connection is successful, it proceeds to read temperature and humidity data from a DHT11 sensor. It initializes the DHT11 sensor on a specified GPIO pin (pin 27 in this case). It enters an infinite loop where it measures temperature and humidity using the DHT11 sensor, prints the temperature and humidity values, sends these values to ThingSpeak using the send_to_thingspeak method, and waits for 15 minutes (900 seconds) before taking the next measurement. If there's an error reading from the sensor, it catches the exception and prints an error message.
 
-**Output results**
 <mark>Terminal output of establishing a Wi-Fi connection, and sending the data to the ThingSpeak server using an HTTP POST request</mark>
 ```
 Temperature: 22 C, Humidity: 38%
