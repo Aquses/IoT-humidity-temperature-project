@@ -76,46 +76,47 @@ For this project, I chose ThingSpeak because it is a free cloud service that mee
 
 # The code
 ```
-import network       # Import the network module to handle Wi-Fi connections.
-import time          # Import the time module to handle sleep intervals and delays.
-import machine       # Import the machine module to access the hardware pins.
-import urequests     # Import the urequests module to make HTTP requests.
-import dht           # Import the dht module to interact with the DHT11 temperature and humidity sensor.
+import network
+import time
+import machine
+import urequests
+import dht
 
-SSID = ''            # Wi-Fi SSID (network name), to be filled in.
-PASSWORD = ''        # Wi-Fi password, to be filled in.
+# Wi-Fi credentials
+SSID = ''
+PASSWORD = ''
 
-# ThingSpeak settings
-WRITE_API_KEY = ''   # ThingSpeak channel write API key, to be filled in.
-THINGSPEAK_URL = 'https://api.thingspeak.com/update'  # URL for updating ThingSpeak channel.
+# ThingSpeak settings for data logging
+WRITE_API_KEY = ''
+THINGSPEAK_URL = 'https://api.thingspeak.com/update'
 
+# Function to connect to a Wi-Fi network
 def connect_to_wifi(ssid, password):
-    # Function to connect to Wi-Fi using provided SSID and password.
-    wlan = network.WLAN(network.STA_IF)  # Create a WLAN object in station mode.
-    wlan.active(True)                    # Activate the network interface.
-    wlan.connect(ssid, password)         # Connect to the Wi-Fi network with the given SSID and password.
+    wlan = network.WLAN(network.STA_IF)  # Create a WLAN station interface
+    wlan.active(True)  # Activate the interface
+    wlan.connect(ssid, password)  # Connect to the specified Wi-Fi network
     
-    max_wait = 10  # Maximum number of attempts to wait for connection.
-    while max_wait > 0:  # Loop until connection is established or max attempts reached.
-        if wlan.status() == network.STAT_GOT_IP:  # Check if the device got an IP address.
-            print('Connected to Wi-Fi')  # Print success message.
-            print('IP Address:', wlan.ifconfig()[0])  # Print the assigned IP address.
-            return True  # Return True indicating successful connection.
-        max_wait -= 1  # Decrement the wait counter.
+    max_wait = 10  # Maximum wait time for connection in 5-second intervals
+    while max_wait > 0:
+        if wlan.status() == network.STAT_GOT_IP:  # Check if connected and got IP
+            print('Connected to Wi-Fi')
+            print('IP Address:', wlan.ifconfig()[0])  # Print the IP address
+            return True  # Return True if connected
+        max_wait -= 1
         print('Waiting for connection...')
-        time.sleep(5)  # Wait for 5 seconds before next attempt.
+        time.sleep(5)  # Wait for 5 seconds before retrying
     
-    print('Failed to connect to Wi-Fi')  # Print failure message if not connected after max attempts.
-    return False  # Return False indicating failed connection.
+    print('Failed to connect to Wi-Fi')
+    return False  # Return False if unable to connect
 
+# Function to send data to ThingSpeak
 def send_to_thingspeak(temperature, humidity):
-    # Function to send temperature and humidity data to ThingSpeak.
     try:
+        # Construct the URL with the temperature and humidity values
         url = f"{THINGSPEAK_URL}?api_key={WRITE_API_KEY}&field1={temperature}&field2={humidity}"
-        # Construct the URL for the HTTP GET request with temperature and humidity data.
-        response = urequests.get(url)  # Make the GET request to ThingSpeak.
-        
-        # Print the HTTP response status and headers.
+        response = urequests.get(url)  # Send a GET request to ThingSpeak
+
+        # Print response status and headers
         print("HTTP/1.1", response.status_code, response.reason)
         print(f"Date: {response.headers.get('Date')}")
         print(f"Content-Type: {response.headers.get('Content-Type')}")
@@ -126,33 +127,33 @@ def send_to_thingspeak(temperature, humidity):
         print(f"Access-Control-Allow-Origin: {response.headers.get('Access-Control-Allow-Origin')}")
         print(f"Access-Control-Max-Age: {response.headers.get('Access-Control-Max-Age')}")
         print(f"X-Request-Id: {response.headers.get('X-Request-Id')}")
-        
-        response.close()
+
+        response.close()  # Close the response
     except Exception as e:
-        print("Failed to send data to ThingSpeak:", e)  # Print error message if sending fails.
+        print("Failed to send data to ThingSpeak:", e)  # Print error if request fails
 
+# Main function to manage the process
 def main():
-    # Main function to run the program.
-    if not connect_to_wifi(SSID, PASSWORD):  # Try to connect to Wi-Fi, exit if connection fails.
-        return
+    if not connect_to_wifi(SSID, PASSWORD):  # Connect to Wi-Fi
+        return  # Exit if Wi-Fi connection fails
 
-    dht11_pin = machine.Pin(27)  # Define the GPIO pin connected to the DHT11 sensor.
-    dht11_sensor = dht.DHT11(dht11_pin)  # Initialize the DHT11 sensor with the specified pin.
+    dht11_pin = machine.Pin(27)  # Define the pin connected to the DHT11 sensor
+    dht11_sensor = dht.DHT11(dht11_pin)  # Create a DHT11 sensor object
 
-    while True:  # Infinite loop to continuously read sensor data and send to ThingSpeak.
+    while True:
         try:
-            dht11_sensor.measure()  # Trigger the sensor to take a measurement.
-            temperature = dht11_sensor.temperature()  # Read the temperature value.
-            humidity = dht11_sensor.humidity()  # Read the humidity value.
-            print(f"\nTemperature: {temperature} C, Humidity: {humidity}%")  # Print the sensor readings.
+            dht11_sensor.measure()  # Measure temperature and humidity
+            temperature = dht11_sensor.temperature()  # Get the temperature
+            humidity = dht11_sensor.humidity()  # Get the humidity
+            print(f"\nTemperature: {temperature} C, Humidity: {humidity}%")
             
-            send_to_thingspeak(temperature, humidity)  # Send the sensor data to ThingSpeak.
-            time.sleep(900)  # Wait for 15 minutes before the next reading.
+            send_to_thingspeak(temperature, humidity)  # Send data to ThingSpeak
+            time.sleep(900)  # Wait for 15 minutes (900 seconds) before next measurement
         except OSError as e:
-            print("Failed to read sensor:", e)
+            print("Failed to read sensor:", e)  # Print error if sensor reading fails
 
-# Call the main function to start the program.
-main()
+main()  # Run the main function
+
 ```
 
 <mark>Output</mark>
