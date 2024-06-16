@@ -161,7 +161,7 @@ main()  # Run the main function
 
 3. **main():** This is the main function that orchestrates the entire process. It first attempts to connect to the Wi-Fi using the connect_to_wifi method. If the Wi-Fi connection is successful, it proceeds to read temperature and humidity data from a DHT11 sensor. It initializes the DHT11 sensor on a specified GPIO pin (pin 27 in this case). It enters an infinite loop where it measures temperature and humidity using the DHT11 sensor, prints the temperature and humidity values, sends these values to ThingSpeak using the send_to_thingspeak method, and waits for 15 minutes (900 seconds) before taking the next measurement. If there's an error reading from the sensor, it catches the exception and prints an error message.
 
-# Output results
+**Output results**
 <mark>Terminal output of establishing a Wi-Fi connection, and sending the data to the ThingSpeak server using an HTTP POST request</mark>
 ```
 Temperature: 22 C, Humidity: 38%
