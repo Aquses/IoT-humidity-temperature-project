@@ -41,6 +41,7 @@ The first step was to decide which IDE to use. I chose Visual Studio Code. After
 After that we need to configure the project for the Pico. That is why we use extension to do so.
 
 ![Alt text](images/ide_pic1.png)
+
 Figure .
 
 After the configuration a ".micropico" config was created, therefore it means that the configuration was initialized correctly. From this point, we can try to connect the Raspberry Pi Pico to a computer and see, if our IDE detects it.
@@ -54,6 +55,7 @@ In this project, I used the website https://ThingSpeak.com. By using ThingSpeak,
 
 Next step is creating a new channel on Thingspeak and getting and API key for uploading the data. 
 ![Alt text](images/thingspeak_img1.png)
+
 Figure .
 
 You are now ready to run your code on the development board. To upload the code, follow these steps:
