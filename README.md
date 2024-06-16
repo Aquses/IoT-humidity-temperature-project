@@ -188,9 +188,8 @@ To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protoc
 The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 15 minutes. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
 
 ![Alt text](images/thingspeak_temp.png)
-Figure . ThingSpeak data statistics (temperature).
 ![Alt text](images/thingspeak_humid.png)
-Figure . ThingSpeak data statistics (humidity).
+Figure . ThingSpeak data statistics (temperature - right, humidity - left).
 
 # Finalizing the design
 
