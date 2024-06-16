@@ -25,7 +25,7 @@ The project offers an opportunity to gain an understanding of fundamental concep
 # Material
 Component | Purpose    
 -| -|
-ESP8266 | A microcontroller used for data collection, data transfer, and data analysis. 
+Raspberry Pi Pico Wh | A microcontroller used for data collection, data transfer, and data analysis. 
 DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature 
 5x Jumper wires | Wires for connecting the different components
 Breadboard 800 points | A board used to easy connect the sensors without soldering 
