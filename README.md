@@ -33,8 +33,6 @@ Micro USB cable | Connection between Raspberry Pi Pico and a computer
 
 I bought the Linnaeus Development kit for 399 SEK, so it had all of these components included.
 
-
-
 # Computer setup
 **Setting up the IDE:**
 
@@ -43,10 +41,12 @@ The first step was to decide which IDE to use. I chose Visual Studio Code. After
 After that we need to configure the project for the Pico. That is why we use extension to do so.
 
 ![Alt text](images/ide_pic1.png)
+Figure .
 
 After the configuration a ".micropico" config was created, therefore it means that the configuration was initialized correctly. From this point, we can try to connect the Raspberry Pi Pico to a computer and see, if our IDE detects it.
 
 ![Alt text](images/ide_pic2.png)
+Figure .
 
 Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.
 
@@ -54,6 +54,7 @@ In this project, I used the website https://ThingSpeak.com. By using ThingSpeak,
 
 Next step is creating a new channel on Thingspeak and getting and API key for uploading the data. 
 ![Alt text](images/thingspeak_img1.png)
+Figure .
 
 You are now ready to run your code on the development board. To upload the code, follow these steps:
 
@@ -70,6 +71,7 @@ You are now ready to run your code on the development board. To upload the code,
 The setup of the device and the wiring is shown down below
 
 ![Alt text](images/breadboard_blueprint.png)
+Figure .
 
 # Platform
 For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
