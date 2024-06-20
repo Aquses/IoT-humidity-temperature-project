@@ -33,7 +33,7 @@ Micro USB cable | Connection between Raspberry Pi Pico and a computer.
 The parts can be bought in Electrokit individually or there is another option "Linnaeus Development kit" for 399 SEK, so it has all of these components included.
 
 # Computer setup
-**Setting up the IDE: Visual Studio Code**
+### Setting up the IDE: Visual Studio Code
 The first step was to decide which IDE to use. I chose Visual Studio Code. After installing it, I also installed the MicroPython extension to work with the Raspberry Pi Pico.
 
 After that we need to configure the project for the Pico. That is why we use extension to do so.
