@@ -7,9 +7,7 @@ This project was done as part of the course "1DT305 - Introduction to Applied Io
 # Short project overview
 For this project, I constructed a sensor node using a Raspberry Pi Pico W that reports temperature and humidity every hour to ThingSpeak, a free service that facilitates communication with internet-enabled devices.
 
-**Approxiamtion of time needed for the project:**
-
-Up to 2-3 hours total
+*The estimated time to complete this project: 2-3 hours.*
 
 # Objective
 **Reasons for choosing the project:**
