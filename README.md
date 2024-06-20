@@ -71,12 +71,13 @@ The setup of the device and the wiring is shown down below
 For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
 
 # The code
+I used these libraries to connect my microcontroller to Wi-Fi, manage time and delays, interact with hardware components like sensors, make HTTP requests to send or receive data from a server, and read temperature and humidity data from a DHT sensor.
 
-- ```import network``` provides access to network interfaces and functionalities, such as connecting to Wi-Fi.
-- ```import time``` is used for time-related functions, like getting the current time, setting delays, and measuring intervals.
-- ```import machine``` provides functions to access and control hardware components, such as GPIO pins, ADCs, and other peripherals.
-- ```import urequests``` a simplified version of the requests library, used for making HTTP requests, like GET and POST, in MicroPython environments.
-- ```import dht``` is used specifically for working with DHT temperature and humidity sensors, allowing to read data from these sensors.
+- ```import network``` - provides access to network interfaces and functionalities, such as connecting to Wi-Fi.
+- ```import time``` - is used for time-related functions, like getting the current time, setting delays, and measuring intervals.
+- ```import machine``` - provides functions to access and control hardware components, such as GPIO pins, ADCs, and other peripherals.
+- ```import urequests``` - a simplified version of the requests library, used for making HTTP requests, like GET and POST, in MicroPython environments.
+- ```import dht``` - is used specifically for working with DHT temperature and humidity sensors, allowing to read data from these sensors.
 
 ```python
 # Wi-Fi credentials
@@ -87,6 +88,11 @@ PASSWORD = ''
 WRITE_API_KEY = ''
 THINGSPEAK_URL = 'https://api.thingspeak.com/update'
 ```
+- ```SSID``` - This variable is intended to store the name (SSID) of the Wi-Fi network you want to connect your device to.
+- ```PASSWORD``` - This variable is intended to store the password for the specified Wi-Fi network.
+- ```WRITE_API_KEY``` - This variable is meant to hold your unique API key for ThingSpeak, which is a cloud platform for IoT data logging. This key is used to authenticate and authorize your device to send data to your ThingSpeak channel.
+- ```THINGSPEAK_URL``` - This variable contains the URL endpoint for ThingSpeak's data update API. It's the address to which you will send HTTP requests to log your sensor data.
+
 The code starts with importing several libraries necessary for its functionality. The network library is used to manage Wi-Fi connections, time is utilized for sleep intervals and delays, machine handles hardware operations such as pin assignments, urequests facilitates sending HTTP requests to web services, and dht is used to interface with the DHT11 temperature and humidity sensor. These imports provide the essential tools needed to connect to Wi-Fi, read sensor data, and send this data to the ThingSpeak cloud service.
 
 1. **connect_to_wifi(ssid, password):** This method connects the device to a Wi-Fi network using the provided SSID and password. It creates and activates a WLAN station interface, then tries to connect to the Wi-Fi network and waits for up to 50 seconds (10 intervals of 5 seconds each). If it successfully connects and gets an IP address, it prints the IP address and returns True. If it fails to connect within the maximum wait time, it prints a failure message and returns False.
