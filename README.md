@@ -72,11 +72,11 @@ For this project, I chose ThingSpeak because it is a free cloud service that mee
 
 # The code
 
-- ```import network```
-- ```import time```
-- ```import machine```
-- ```import urequests```
-- ```import dht```
+- ```import network``` provides access to network interfaces and functionalities, such as connecting to Wi-Fi.
+- ```import time``` is used for time-related functions, like getting the current time, setting delays, and measuring intervals.
+- ```import machine``` provides functions to access and control hardware components, such as GPIO pins, ADCs, and other peripherals.
+- ```import urequests``` a simplified version of the requests library, used for making HTTP requests, like GET and POST, in MicroPython environments.
+- ```import dht``` is used specifically for working with DHT temperature and humidity sensors, allowing to read data from these sensors.
 
 ```python
 # Wi-Fi credentials
