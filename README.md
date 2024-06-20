@@ -67,6 +67,10 @@ The setup of the device and the wiring is shown down below
 
 ![Alt text](images/breadboard_blueprint.png)
 
+The Raspberry Pi Pico is placed on the right side of the breadboard. It is powered by a micro USB cable connected either to a power supply or to a computer. The VBUS pin is connected to the breadboard's power supply line to provide power to the sensors, and the GND pin is connected to the GND line.
+
+Both sensors have a GND pin that is also connected to the breadboard's GND line and a VCC pin that is connected to the breadboard's power supply line. Each sensor has one data transfer pin: the capacitive soil moisture sensor, being an analog sensor, has its data pin connected to an ADC (Analog to Digital Converter) pin, the DHT11 sensor is connected to GPIO27.
+
 # Platform
 For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
 
