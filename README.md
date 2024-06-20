@@ -44,7 +44,7 @@ After the configuration a ".micropico" config was created, therefore it means th
 
 ![Alt text](images/ide_pic2.png)
 
-Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.
+*Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.*
 
 In this project, I used the website https://ThingSpeak.com. By using ThingSpeak, you can share your sensor data on their platform and visualize it on a graph along with timestamps. This enables you to conveniently access your sensor readings from any location worldwide.
 
@@ -185,6 +185,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Max-Age: 1800
 X-Request-Id: 6083e79d-2c9a-45aa-bcbd-2eb701e8d707
 ```
+The output shows that the device successfully read temperature and humidity data, with readings of 22 degrees Celsius and 38% humidity, respectively. The HTTP response from the server indicates a successful request, with a status line of HTTP/1.1 200 b'OK', confirming that the data was received and processed correctly. The response includes a timestamp (Fri, 14 Jun 2024 20:07:24 GMT), indicating when the server processed the request. The content type of the response is text/plain; charset=utf-8, and the content length is 2 bytes. The server specifies that the connection will be closed after delivering the response. Caching directives indicate that the response is private, should not be cached by shared caches, and must be revalidated immediately (max-age=0, private, must-revalidate). Additionally, the server allows access from any origin (Access-Control-Allow-Origin: *) and provides a caching duration for preflight requests (Access-Control-Max-Age: 1800). An X-Request-Id is also included (6083e79d-2c9a-45aa-bcbd-2eb701e8d707) for tracking and debugging purposes. Overall, the response confirms the successful logging of sensor data to the ThingSpeak server.
 
 # Transmitting the data / connectivity
 I opted to send data at hourly intervals to monitor the humidity levels in my room. This frequency is ideal for determining if the environment is too dry.
