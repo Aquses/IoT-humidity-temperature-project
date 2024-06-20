@@ -67,7 +67,7 @@ The setup of the device and the wiring is shown down below
 
 ![Alt text](images/breadboard_blueprint.png)
 
-The Raspberry Pi Pico is placed on the right side of the breadboard. It is powered by a micro USB cable connected either to a power supply or to a computer. The VBUS pin is connected to the breadboard's power supply line to provide power to the sensors, and the GND pin is connected to the GND line.
+The Raspberry Pi Pico is placed on the left side of the breadboard. It is powered by a micro USB cable connected either to a power supply or to a computer. The 3V3(OUT) pin is connected to the breadboard's power supply line to provide power to the sensors, and the GND pin is connected to the GND line.
 
 Both sensors have a GND pin that is also connected to the breadboard's GND line and a VCC pin that is connected to the breadboard's power supply line. Each sensor has one data transfer pin: the capacitive soil moisture sensor, being an analog sensor, has its data pin connected to an ADC (Analog to Digital Converter) pin, the DHT11 sensor is connected to GPIO27.
 
@@ -204,9 +204,7 @@ The Thingspeak dashboard is configured with two data fields: one for humidity an
 ![Alt text](images/thingspeak_stats.png)
 
 # Finalizing the design
+In conclusion, the project was successful, I managed to connect everything and send date to ThingSpeak. The programming with python was not hard, because I had written on it before. Connecting everything was also easy, because I also had some of the experience with Raspberry Pi Pico. And of course now I know that my room has enough humidity.
 
 ![Alt text](images/setup1.jpg)
 ![Alt text](images/setup2.jpg)
-
-# Final thoughts
-The project was successful, I managed to connect everything and send date to ThingSpeak. The programming with python was not hard, because I had written on it before. Connecting everything was also easy, because I also had some of the experience with Raspberry Pi Pico. And of course now I know that my room has enough humidity.
