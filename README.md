@@ -147,7 +147,7 @@ def send_to_thingspeak(temperature, humidity):
         print("Failed to send data to ThingSpeak:", e)  # Print error if request fails
 ```
 
-3. **main():** This is the main function that orchestrates the entire process. It first attempts to connect to the Wi-Fi using the connect_to_wifi method. If the Wi-Fi connection is successful, it proceeds to read temperature and humidity data from a DHT11 sensor. It initializes the DHT11 sensor on a specified GPIO pin (pin 27 in this case). It enters an infinite loop where it measures temperature and humidity using the DHT11 sensor, prints the temperature and humidity values, sends these values to ThingSpeak using the send_to_thingspeak method, and waits for 15 minutes (900 seconds) before taking the next measurement. If there's an error reading from the sensor, it catches the exception and prints an error message.
+3. **main():** This is the main function that orchestrates the entire process. It first attempts to connect to the Wi-Fi using the connect_to_wifi method. If the Wi-Fi connection is successful, it proceeds to read temperature and humidity data from a DHT11 sensor. It initializes the DHT11 sensor on a specified GPIO pin (pin 27 in this case). It enters an infinite loop where it measures temperature and humidity using the DHT11 sensor, prints the temperature and humidity values, sends these values to ThingSpeak using the send_to_thingspeak method, and waits for 2 hours before taking the next measurement. If there's an error reading from the sensor, it catches the exception and prints an error message.
 
 ```python
 # Main function to manage the process
@@ -166,7 +166,7 @@ def main():
             print(f"\nTemperature: {temperature} C, Humidity: {humidity}%")
             
             send_to_thingspeak(temperature, humidity)  # Send data to ThingSpeak
-            time.sleep(900)  # Wait for 15 minutes (900 seconds) before next measurement
+            time.sleep(7200)  # Wait for 2 hours before next measurement
         except OSError as e:
             print("Failed to read sensor:", e)  # Print error if sensor reading fails
 
