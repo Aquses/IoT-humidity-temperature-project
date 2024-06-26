@@ -199,7 +199,7 @@ To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protoc
 I decided to use HTTP over MQTT for several reasons. First, HTTP is straightforward to implement and is widely supported, making it easier to integrate with various web-based platforms and services. Second, HTTP does not require a persistent connection, which simplifies the overall architecture and reduces complexity. Finally, HTTP is well-suited for infrequent data transmissions, such as my two-hour interval, where the overhead of establishing a connection with each transmission is negligible.
 
 # Presenting the data
-The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 15 minutes. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
+The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 2 hours. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
 
 ![Alt text](images/thingspeak_stats.png)
 
