@@ -28,7 +28,7 @@ DHT11 | A sensor used for mesuring the humidity in the air asweel as the tempera
 Breadboard 800 points | A board used to easy connect the sensors without soldering. A smaller sized board could suffice.
 Micro USB cable | Connection between Raspberry Pi Pico and a computer.
 
-The parts can be bought in Electrokit individually or there is another option "Linnaeus Development kit" for 399 SEK, so it has all of these components included.
+The parts can be bought in Electrokit individually or there is another option "[Start Kit - Applied IoT at Linnaeus University]([https://lnu.se/en/course/introduction-to-applied-internet-of-things/distance-international-summer/](https://www.electrokit.com/en/start-kit-applied-iot-at-linnaeus-university-2023))" for 399 SEK, so it has all of these components included.
 
 # Computer setup
 ### Setting up the IDE: Visual Studio Code
