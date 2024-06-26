@@ -24,7 +24,7 @@ Component | Purpose
 -| -|
 Raspberry Pi Pico Wh | A microcontroller used for data collection, data transfer, and data analysis.
 DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature.
-5x Jumper wires | Wires for connecting the different components. Only male-male wires are required.
+5x Male to Male jumper wires | Wires for connecting the different components. Only male-male wires are required.
 Breadboard 800 points | A board used to easy connect the sensors without soldering. A smaller sized board could suffice.
 Micro USB cable | Connection between Raspberry Pi Pico and a computer.
 
@@ -32,7 +32,7 @@ The parts can be bought in Electrokit individually or there is another option "L
 
 # Computer setup
 ### Setting up the IDE: Visual Studio Code
-The first step was to decide which IDE to use. I chose Visual Studio Code. After installing it, I also installed the MicroPython extension to work with the Raspberry Pi Pico.
+The first step was to decide which IDE to use. I chose Visual Studio Code. After installing it, I also installed the MicroPython extension to work with the Raspberry Pi Pico, and chose to install Python language.
 
 After that we need to configure the project for the Pico. That is why we use extension to do so.
 
@@ -190,11 +190,13 @@ X-Request-Id: 6083e79d-2c9a-45aa-bcbd-2eb701e8d707
 The output shows that the device successfully read temperature and humidity data, with readings of 22 degrees Celsius and 38% humidity, respectively. The HTTP response from the server indicates a successful request, with a status line of HTTP/1.1 200 b'OK', confirming that the data was received and processed correctly. The response includes a timestamp (Fri, 14 Jun 2024 20:07:24 GMT), indicating when the server processed the request. The content type of the response is text/plain; charset=utf-8, and the content length is 2 bytes. The server specifies that the connection will be closed after delivering the response. Caching directives indicate that the response is private, should not be cached by shared caches, and must be revalidated immediately (max-age=0, private, must-revalidate). Additionally, the server allows access from any origin (Access-Control-Allow-Origin: *) and provides a caching duration for preflight requests (Access-Control-Max-Age: 1800). An X-Request-Id is also included (6083e79d-2c9a-45aa-bcbd-2eb701e8d707) for tracking and debugging purposes. Overall, the response confirms the successful logging of sensor data to the ThingSpeak server.
 
 # Transmitting the data / connectivity
-I opted to send data at hourly intervals to monitor the humidity levels in my room. This frequency is ideal for determining if the environment is too dry.
+I opted to send data every two hours to monitor the humidity levels in my room. This frequency is ideal for determining if the environment is too dry.
 
 For wireless communication, I used WiFi because my microcontroller is positioned near my home router, eliminating the need for a longer-range protocol. WiFi also incurs no recurring costs, offers low latency, and has minimal bandwidth restrictions, making it the optimal choice.
 
 To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protocol enables the sensor data to be sent to ThingSpeak. HTTP facilitates communication between a client and server using a request-response model. I specifically utilized the POST request method, which allows data to be sent to the server for creating or updating resources, such as publishing sensor readings.
+
+I decided to use HTTP over MQTT for several reasons. First, HTTP is straightforward to implement and is widely supported, making it easier to integrate with various web-based platforms and services. Second, HTTP does not require a persistent connection, which simplifies the overall architecture and reduces complexity. Finally, HTTP is well-suited for infrequent data transmissions, such as my two-hour interval, where the overhead of establishing a connection with each transmission is negligible.
 
 # Presenting the data
 The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 15 minutes. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
