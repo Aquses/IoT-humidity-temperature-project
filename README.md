@@ -23,7 +23,7 @@ The project offers an opportunity to gain an understanding of fundamental concep
 Component | Purpose    
 -| -|
 Raspberry Pi Pico Wh | A microcontroller used for data collection, data transfer, and data analysis.
-DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature.
+DHT11 | A sensor used for mesuring the humidity in the air as well as the temperature.
 5x Male to Male jumper wires | Wires for connecting the different components. Only male-male wires are required.
 Breadboard 800 points | A board used to easy connect the sensors without soldering. A smaller sized board could suffice.
 Micro USB cable | Connection between Raspberry Pi Pico and a computer.
@@ -46,7 +46,7 @@ After the configuration a ".micropico" config was created, therefore it means th
 
 In this project, I used the website https://ThingSpeak.com. By using ThingSpeak, you can share your sensor data on their platform and visualize it on a graph along with timestamps. This enables you to conveniently access your sensor readings from any location worldwide.
 
-Next step is creating a new channel on Thingspeak and getting and API key for uploading the data. 
+Next step is creating a new channel on Thingspeak and getting an API key for uploading the data. 
 ![Alt text](images/thingspeak_img1.png)
 
 You are now ready to run your code on the development board. To upload the code, follow these steps:
@@ -67,7 +67,7 @@ The setup of the device and the wiring is shown down below
 
 The Raspberry Pi Pico is placed on the left side of the breadboard. It is powered by a micro USB cable connected either to a power supply or to a computer. The 3V3(OUT) pin is connected to the breadboard's power supply line to provide power to the sensors, and the GND pin is connected to the GND line.
 
-Both sensors have a GND pin that is also connected to the breadboard's GND line and a VCC pin that is connected to the breadboard's power supply line. Each sensor has one data transfer pin: the capacitive soil moisture sensor, being an analog sensor, has its data pin connected to an ADC (Analog to Digital Converter) pin, the DHT11 sensor is connected to GPIO27.
+The sensor has a GND pin that is also connected to the breadboard's GND line and a VCC pin that is connected to the breadboard's power supply line. The DHT11 sensor has its data transfer pin connected to GPIO27.
 
 # Platform
 For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
