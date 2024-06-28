@@ -70,7 +70,7 @@ The Raspberry Pi Pico is placed on the left side of the breadboard. It is powere
 The sensor has a GND pin that is also connected to the breadboard's GND line and a VCC pin that is connected to the breadboard's power supply line. The DHT11 sensor has its data transfer pin connected to GPIO27.
 
 # Platform
-For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
+For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible. Data from the DHT11 sensor is sent to ThingSpeak using HTTP GET requests, which are made from the Raspberry Pi Pico to the ThingSpeak server. Each data point is associated with a specific field in a ThingSpeak channel (fields), and once the data is uploaded, it is automatically stored and can be analyzed or visualized in real-time using the tools provided by the platform.
 
 # The code
 I used these libraries to connect my microcontroller to Wi-Fi, manage time and delays, interact with hardware components like sensors, make HTTP requests to send or receive data from a server, and read temperature and humidity data from a DHT sensor.
@@ -128,7 +128,7 @@ def send_to_thingspeak(temperature, humidity):
     try:
         # Construct the URL with the temperature and humidity values
         url = f"{THINGSPEAK_URL}?api_key={WRITE_API_KEY}&field1={temperature}&field2={humidity}"
-        response = urequests.get(url)  # Send a GET request to ThingSpeak
+        response = urequests.get(url)  
 
         # Print response status and headers
         print("HTTP/1.1", response.status_code, response.reason)
@@ -199,7 +199,7 @@ To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protoc
 I decided to use HTTP over MQTT for several reasons. First, HTTP is straightforward to implement and is widely supported, making it easier to integrate with various web-based platforms and services. Second, HTTP does not require a persistent connection, which simplifies the overall architecture and reduces complexity. Finally, HTTP is well-suited for infrequent data transmissions, such as my two-hour interval, where the overhead of establishing a connection with each transmission is negligible.
 
 # Presenting the data
-The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 2 hours. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
+The ThingSpeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 2 hours. The humidity data is presented in percentages, while the temperature data is shown in Celsius. The data remains stored on the ThingSpeak platform until I manually remove it, ensuring that historical data is available for review and analysis at any time.
 
 ![Alt text](images/thingspeak_stats.png)
 
