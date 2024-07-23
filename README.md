@@ -7,9 +7,7 @@ This project was done as part of the course "1DT305 - Introduction to Applied Io
 # Short project overview
 For this project, I constructed a sensor node using a Raspberry Pi Pico W that reports temperature and humidity every hour to ThingSpeak, a free service that facilitates communication with internet-enabled devices.
 
-**Approxiamtion of time needed for the project:**
-
-Up to 2-3 hours total
+*The estimated time to complete this project: 2-3 hours.*
 
 # Objective
 **Reasons for choosing the project:**
@@ -25,16 +23,16 @@ The project offers an opportunity to gain an understanding of fundamental concep
 Component | Purpose    
 -| -|
 Raspberry Pi Pico Wh | A microcontroller used for data collection, data transfer, and data analysis.
-DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature.
-5x Jumper wires | Wires for connecting the different components. Only male-male wires are required.
+DHT11 | A sensor used for mesuring the humidity in the air as well as the temperature.
+5x Male to Male jumper wires | Wires for connecting the different components. Only male-male wires are required.
 Breadboard 800 points | A board used to easy connect the sensors without soldering. A smaller sized board could suffice.
 Micro USB cable | Connection between Raspberry Pi Pico and a computer.
 
-The parts can be bought in Electrokit individually or there is another option "Linnaeus Development kit" for 399 SEK, so it has all of these components included.
+The parts can be bought in Electrokit individually or there is another option "[Start Kit - Applied IoT at Linnaeus University](https://www.electrokit.com/en/start-kit-applied-iot-at-linnaeus-university-2023)" for 399 SEK, so it has all of these components included.
 
 # Computer setup
 ### Setting up the IDE: Visual Studio Code
-The first step was to decide which IDE to use. I chose Visual Studio Code. After installing it, I also installed the MicroPython extension to work with the Raspberry Pi Pico.
+The first step was to decide which IDE to use. I chose Visual Studio Code. After installing it, I also installed the MicroPython extension to work with the Raspberry Pi Pico, and chose to install Python language.
 
 After that we need to configure the project for the Pico. That is why we use extension to do so.
 
@@ -44,11 +42,11 @@ After the configuration a ".micropico" config was created, therefore it means th
 
 ![Alt text](images/ide_pic2.png)
 
-Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.
+*Note: it is mandatory to add a boot setup to Raspberry Pi Pico or else it will not work. Furthermore, the new updates for Pico would not detect the Pico, therefore had to use older versions.*
 
 In this project, I used the website https://ThingSpeak.com. By using ThingSpeak, you can share your sensor data on their platform and visualize it on a graph along with timestamps. This enables you to conveniently access your sensor readings from any location worldwide.
 
-Next step is creating a new channel on Thingspeak and getting and API key for uploading the data. 
+Next step is creating a new channel on Thingspeak and getting an API key for uploading the data. 
 ![Alt text](images/thingspeak_img1.png)
 
 You are now ready to run your code on the development board. To upload the code, follow these steps:
@@ -67,8 +65,12 @@ The setup of the device and the wiring is shown down below
 
 ![Alt text](images/breadboard_blueprint.png)
 
+The Raspberry Pi Pico is placed on the left side of the breadboard. It is powered by a micro USB cable connected either to a power supply or to a computer. The 3V3(OUT) pin is connected to the breadboard's power supply line to provide power to the sensors, and the GND pin is connected to the GND line.
+
+The sensor has a GND pin that is also connected to the breadboard's GND line and a VCC pin that is connected to the breadboard's power supply line. The DHT11 sensor has its data transfer pin connected to GPIO27.
+
 # Platform
-For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams and gauges. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible.
+For this project, I chose ThingSpeak because it is a free cloud service that meets my project's needs effectively. ThingSpeak offers user-friendly features for real-time data visualization on its online dashboard, enabling users to select from multiple display formats like diagrams. Moreover, it supports online data analysis through its channels, making data analysis straightforward and accessible. Data from the DHT11 sensor is sent to ThingSpeak using HTTP POST requests, which are made from the Raspberry Pi Pico to the ThingSpeak server. Each data point is associated with a specific field in a ThingSpeak channel (fields), and once the data is uploaded, it is automatically stored and can be analyzed or visualized in real-time using the tools provided by the platform.
 
 # The code
 I used these libraries to connect my microcontroller to Wi-Fi, manage time and delays, interact with hardware components like sensors, make HTTP requests to send or receive data from a server, and read temperature and humidity data from a DHT sensor.
@@ -126,7 +128,7 @@ def send_to_thingspeak(temperature, humidity):
     try:
         # Construct the URL with the temperature and humidity values
         url = f"{THINGSPEAK_URL}?api_key={WRITE_API_KEY}&field1={temperature}&field2={humidity}"
-        response = urequests.get(url)  # Send a GET request to ThingSpeak
+        response = urequests.get(url)  
 
         # Print response status and headers
         print("HTTP/1.1", response.status_code, response.reason)
@@ -145,7 +147,7 @@ def send_to_thingspeak(temperature, humidity):
         print("Failed to send data to ThingSpeak:", e)  # Print error if request fails
 ```
 
-3. **main():** This is the main function that orchestrates the entire process. It first attempts to connect to the Wi-Fi using the connect_to_wifi method. If the Wi-Fi connection is successful, it proceeds to read temperature and humidity data from a DHT11 sensor. It initializes the DHT11 sensor on a specified GPIO pin (pin 27 in this case). It enters an infinite loop where it measures temperature and humidity using the DHT11 sensor, prints the temperature and humidity values, sends these values to ThingSpeak using the send_to_thingspeak method, and waits for 15 minutes (900 seconds) before taking the next measurement. If there's an error reading from the sensor, it catches the exception and prints an error message.
+3. **main():** This is the main function that orchestrates the entire process. It first attempts to connect to the Wi-Fi using the connect_to_wifi method. If the Wi-Fi connection is successful, it proceeds to read temperature and humidity data from a DHT11 sensor. It initializes the DHT11 sensor on a specified GPIO pin (pin 27 in this case). It enters an infinite loop where it measures temperature and humidity using the DHT11 sensor, prints the temperature and humidity values, sends these values to ThingSpeak using the send_to_thingspeak method, and waits for 2 hours before taking the next measurement. If there's an error reading from the sensor, it catches the exception and prints an error message.
 
 ```python
 # Main function to manage the process
@@ -164,7 +166,7 @@ def main():
             print(f"\nTemperature: {temperature} C, Humidity: {humidity}%")
             
             send_to_thingspeak(temperature, humidity)  # Send data to ThingSpeak
-            time.sleep(900)  # Wait for 15 minutes (900 seconds) before next measurement
+            time.sleep(7200)  # Wait for 2 hours before next measurement
         except OSError as e:
             print("Failed to read sensor:", e)  # Print error if sensor reading fails
 
@@ -185,24 +187,24 @@ Access-Control-Allow-Origin: *
 Access-Control-Max-Age: 1800
 X-Request-Id: 6083e79d-2c9a-45aa-bcbd-2eb701e8d707
 ```
+The output shows that the device successfully read temperature and humidity data, with readings of 22 degrees Celsius and 38% humidity, respectively. The HTTP response from the server indicates a successful request, with a status line of HTTP/1.1 200 b'OK', confirming that the data was received and processed correctly.
 
 # Transmitting the data / connectivity
-I opted to send data at hourly intervals to monitor the humidity levels in my room. This frequency is ideal for determining if the environment is too dry.
+I opted to send data every two hours to monitor the humidity levels in my room. This frequency is ideal for determining if the environment is too dry.
 
 For wireless communication, I used WiFi because my microcontroller is positioned near my home router, eliminating the need for a longer-range protocol. WiFi also incurs no recurring costs, offers low latency, and has minimal bandwidth restrictions, making it the optimal choice.
 
 To transmit the data, I used the Hypertext Transfer Protocol (HTTP). This protocol enables the sensor data to be sent to ThingSpeak. HTTP facilitates communication between a client and server using a request-response model. I specifically utilized the POST request method, which allows data to be sent to the server for creating or updating resources, such as publishing sensor readings.
 
-# Presenting the data
-The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 15 minutes. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
+I decided to use HTTP over MQTT for several reasons. First, HTTP is straightforward to implement and is widely supported, making it easier to integrate with various web-based platforms and services. Second, HTTP does not require a persistent connection, which simplifies the overall architecture and reduces complexity. Finally, HTTP is well-suited for infrequent data transmissions, such as my two-hour interval, where the overhead of establishing a connection with each transmission is negligible.
 
-![Alt text](images/thingspeak_temp.png)
-![Alt text](images/thingspeak_humid.png)
+# Presenting the data
+The ThingSpeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values every 2 hours. The humidity data is presented in percentages, while the temperature data is shown in Celsius. The data remains stored on the ThingSpeak platform until I manually remove it, ensuring that historical data is available for review and analysis at any time.
+
+![Alt text](images/thingspeak_stats.png)
 
 # Finalizing the design
+In conclusion, the project was successful, I managed to connect everything and send date to ThingSpeak. The programming with python was not hard, because I had written on it before. Connecting everything was also easy, because I also had some of the experience with Raspberry Pi Pico. And of course now I know that my room has enough humidity.
 
 ![Alt text](images/setup1.jpg)
 ![Alt text](images/setup2.jpg)
-
-# Final thoughts
-The project was successful, I managed to connect everything and send date to ThingSpeak. The programming with python was not hard, because I had written on it before. Connecting everything was also easy, because I also had some of the experience with Raspberry Pi Pico. And of course now I know that my room has enough humidity.
